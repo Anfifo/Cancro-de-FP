@@ -7,8 +7,8 @@ def mandatos (nr_mandatos,nr_votos):
         l=0
         j = maxind(lista_nr_votos)
         
-        if j == list :
-            max1=lista_nr_votos[j]
+        if type(j) is list :
+            max1=lista_nr_votos[j[0]]
             for k in range(len(j)):     
                 if max1>nr_votos[j[k]]: 
                     max1=nr_votos[j[k]]
@@ -32,6 +32,7 @@ def maxind(lista):
         for i in range(len(lista)):                             
             if lista[i]==max(lista):
                 lista_max = lista_max + [i]
-                return lista_max
+        return lista_max
     return maximo
+
 
