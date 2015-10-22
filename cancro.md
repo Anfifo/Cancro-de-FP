@@ -19,7 +19,7 @@ def mandatos (nr_mandatos,nr_votos):
         else:
             dep[j]=dep[j]+1  
             div[j]=div[j]+1        
-        lista_nr_votos[j]= nr_votos[j]/div[j] 
+            lista_nr_votos[j]= nr_votos[j]/div[j] 
     return tuple(dep)
 
 def maxind(lista):
