@@ -1,38 +1,39 @@
-def mandatos (nr_mandatos,nr_votos):
-    dep=[0,]*len(nr_votos)   #mandatos atribuidos
-    div=[1,]*len(nr_votos)   #lsita dos divisores
-    lista_nr_votos=list(nr_votos)   
-    k=1
-    for i in range(nr_mandatos):               
-        l=0
-        j = maxind(lista_nr_votos)
-        
-        if type(j) is list :
-            max1=nr_votos[j[0]] 
-            for k in range(len(j)):
-                if max1>nr_votos[j[k]]:
-                    max1=nr_votos[j[k]]
-                    l=k
-            
-            dep[j[l]] = dep[j[l]]+1   
-            div[j[l]]=div[j[l]]+1 
-            lista_nr_votos[j[l]]= nr_votos[j[l]]/div[j[l]] 
-                       
-        else:
-            dep[j]=dep[j]+1  
-            div[j]=div[j]+1        
-            lista_nr_votos[j]= nr_votos[j]/div[j] 
-    return tuple(dep)
+def start():
+    a=[]    #Matriz 1
+    b=[]    #Matriz 2
+    nr_linhasA= int(input ("introduza o numero de linhas da primeira Matriz\n"))
+    nr_colunasA= int(input ("introduza o numero de colunas da primeira Matriz\n"))
+    nr_colunasB= int(input("o numero de colunas da segunda Matriz tem de ser\n"+str(nr_colunasA)+"\nintroduza o numero de colunas da segunda Matriz\n"))
+    
+    for i in range(nr_linhasA):
+        a.append (tuple(input("introduza a linha "+str(i+1)+" da primeira matriz separando as entradas por virgulas\n").split(",")))
+    for j in range(nr_colunasA):
+        b.append(tuple(input("introduza a linha "+str(j+1)+" da segunda matriz separando as entradas por virgulas\n").split(",")))
+    
+    print ("primeira matriz e")
+    escreve_matriz(a)
+    print("a segunda matriz e")
+    escreve_matriz(b)
+    print("a multiplicação da")
+    return MM(a,b)
 
-def maxind(lista):
-    '''A funcao "maxind" retorna a posicao de um maximo numa lista qualquer'''
-    maximo=lista.index(max(lista))
-    s=lista[:]
-    s[maximo]=0
-    if max(s)== max(lista):
-        lista_max=[]
-        for i in range(len(lista)):                             
-            if lista[i]==max(lista):
-                lista_max = lista_max + [i]
-        return lista_max
-    return maximo
+def mul_matriz (a,b):
+    s=[]
+    for l in range (len(a)):
+        v=[] 
+        v=[0,]*len(a)
+        s.append(v[:])        
+    for i in range(len(a)):
+        for j in range(len(b[0])):
+            for k in range(len(b)):
+                s[i][j] += int(a[i][k]) * int(b[k][j])
+    return s
+
+def escreve_matriz (m):
+    for i in range (len(m)):
+        print(m[i])
+
+def MM(a,b):
+    escreve_matriz(mul_matriz(a,b))
+
+start()
